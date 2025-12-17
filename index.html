@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <title>Pixel Sprite Studio - 像素精靈製作與編輯工具</title>
+    <meta name="description"
+        content="Pixel Sprite Studio 是一個強大的線上像素精靈製作工具。輕鬆去背、組裝角色、調整動畫，並輸出為 PNG 或 GIF 動圖。適合遊戲開發者與像素藝術愛好者。">
+    <meta name="keywords"
+        content="像素製作, Sprite Maker, sprite sheet,去背工具, 像素藝術, Pixel Art, 遊戲素材, GIF 產生器, ドット絵, 픽셀 아트, Pixel Editor, Game Assets, Background Remover">
+    <meta name="author" content="Pixel Sprite Studio">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://spritesheettogif.krownsh.work/">
+    <meta property="og:title" content="Pixel Sprite Studio - 像素精靈製作與編輯工具">
+    <meta property="og:description" content="強大的線上像素精靈製作工具。輕鬆去背、組裝角色，製作專屬動圖。">
+    <meta property="og:image" content="https://spritesheettogif.krownsh.work/assets/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://spritesheettogif.krownsh.work/">
+    <meta property="twitter:title" content="Pixel Sprite Studio - 像素精靈製作與編輯工具">
+    <meta property="twitter:description" content="強大的線上像素精靈製作工具。輕鬆去背、組裝角色，製作專屬動圖。">
+    <meta property="twitter:image" content="https://spritesheettogif.krownsh.work/assets/og-image.png">
+
+    <link rel="canonical" href="https://spritesheettogif.krownsh.work/">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6469324787465789"
+        crossorigin="anonymous"></script>
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Pixel Sprite Studio",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Pixel Sprite Studio 是一個強大的線上像素精靈製作工具。輕鬆去背、組裝角色、調整動畫。"
+    }
+    </script>
+
+    <!-- Lucide Icons -->
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="libs/lang.js"></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="brand">
+            <img src="assets/favicon.png" alt="Logo" class="brand-logo">
+            <span class="gradient-text">Pixel Sprite Studio</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <!-- Language Switcher -->
+            <select id="lang-select" class="form-select">
+                <option value="zh-TW">繁體中文</option>
+                <option value="en">English</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국어</option>
+                <option value="th">ไทย</option>
+                <option value="vi">Tiếng Việt</option>
+                <option value="id">Bahasa Indonesia</option>
+                <option value="ms">Bahasa Melayu</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="es">Español</option>
+            </select>
+            <!-- Header Actions -->
+            <button class="btn btn-secondary" id="btn-settings" title="設置">
+                <i data-lucide="settings"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- LEFT: Library -->
+        <div class="panel library-panel">
+            <div class="panel-header">
+                <span data-i18n="ui.library">素材庫</span>
+                <button class="btn btn-sm" id="btn-open-factory" style="padding: 4px 8px; font-size: 0.8rem;">
+                    <i data-lucide="plus" size="14"></i> <span data-i18n="ui.add">新增</span>
+                </button>
+            </div>
+
+            <div class="library-tabs">
+                <button class="tab-btn active" data-tab="character" data-i18n="ui.tab.character">角色</button>
+                <button class="tab-btn" data-tab="accessory" data-i18n="ui.tab.accessory">配飾</button>
+            </div>
+
+            <div class="library-grid" id="library-grid">
+                <!-- Items injected here -->
+            </div>
+
+            <!-- AdSense: Sidebar/Library Ad -->
+            <div style="margin-top: 10px; text-align: center;">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6469324787465789"
+                    data-ad-slot="2220239076" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+
+        <!-- CENTER: Workspace -->
+        <div class="panel workspace-panel">
+            <!-- Top: Output Preview (Animation Loop) -->
+            <div class="panel-header">
+                <span data-i18n="ui.preview.title">實時預覽</span>
+                <div class="text-xs text-muted" data-i18n="ui.preview.desc">最終輸出效果</div>
+            </div>
+            <div class="canvas-container" style="flex: 1; border-bottom: 1px solid var(--border);">
+                <canvas id="main-canvas"></canvas>
+            </div>
+
+            <!-- Bottom: Editor (Gizmo) -->
+            <div class="panel-header">
+                <span data-i18n="ui.editor.title">編輯器</span>
+                <div class="text-xs text-muted" data-i18n="ui.editor.desc">調整配飾位置與大小</div>
+            </div>
+            <div class="canvas-container" style="flex: 1;">
+                <canvas id="gizmo-canvas"></canvas>
+            </div>
+        </div>
+
+        <!-- RIGHT: Controls -->
+        <div class="panel controls-panel">
+            <!-- RIGHT: Controls -->
+            <div class="panel controls-panel">
+                <div class="panel-header" data-i18n="ui.controls.title">配飾調整</div>
+
+                <div id="no-selection-msg" class="text-muted text-sm text-center py-4" data-i18n="ui.msg.no_selection">
+                    請選中配飾以編輯
+                </div>
+
+                <div id="controls-form" class="hidden">
+                    <div class="control-group">
+                        <label class="control-label" data-i18n="ctrl.bobbing">跳動幅度 (Bobbing)</label>
+                        <input type="range" id="ctrl-bobbing" min="0" max="10" step="1">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" data-i18n="ctrl.scale">縮放 (Scale)</label>
+                        <input type="range" id="ctrl-scale" min="0.1" max="3.0" step="0.1">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" data-i18n="ctrl.rotation">旋轉 (Rotation)</label>
+                        <input type="range" id="ctrl-rotation" min="-180" max="180" step="5">
+                    </div>
+                </div>
+
+                <!-- Global View Controls -->
+                <div class="control-group"
+                    style="padding-top: 20px; border-top: 1px dashed var(--border); margin-top: 10px;">
+                    <label class="control-label" data-i18n="ctrl.zoom">角色縮放 (View Zoom) [預覽]</label>
+                    <input type="range" id="ctrl-global-zoom" min="0.5" max="3.0" step="0.1" value="0.8">
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" data-i18n="ctrl.bgcolor">背景顏色 / 透明</label>
+                    <div class="flex gap-2 items-center">
+                        <input type="color" id="ctrl-bg-color" value="#0d1117"
+                            style="width:48px; height:32px; padding:0;">
+                        <label class="flex items-center gap-2 text-xs">
+                            <input type="checkbox" id="ctrl-bg-transparent" checked>
+                            <span data-i18n="ctrl.transparent">透明背景</span>
+                        </label>
+                    </div>
+                    <div class="text-xs text-muted" data-i18n="ctrl.bg_desc">影響預覽與輸出；勾選透明時忽略顏色。</div>
+                </div>
+
+                <div class="flex-1"></div>
+
+                <button class="btn" id="btn-save-comp">
+                    <i data-lucide="save"></i> <span data-i18n="btn.save_png">輸出 PNG</span>
+                </button>
+                <button class="btn btn-secondary" id="btn-export-gif" style="margin-top: 8px;">
+                    <i data-lucide="film"></i> <span data-i18n="btn.save_gif">輸出 GIF</span>
+                </button>
+                <div id="gif-error" class="text-xs hidden" style="color: #f87171; margin-top: 4px;"></div>
+
+                <!-- AdSense: Right Sidebar/Controls Ad -->
+                <div
+                    style="margin-top: 20px; text-align: center; border-top: 1px dashed var(--border); padding-top: 10px;">
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6469324787465789"
+                        data-ad-slot="1848526370" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
+    </main>
+
+    <!-- Tutorial Section -->
+    <section class="tutorial-section" id="tutorial">
+        <div class="nano-header">
+            <h2><i data-lucide="zap"></i> <span data-i18n="tutorial.title">快速上手指南</span></h2>
+            <p data-i18n="tutorial.subtitle">三步驟輕鬆完成專屬像素精靈！</p>
+        </div>
+        <div class="nano-steps">
+            <!-- Step 1 -->
+            <div class="step-card">
+                <img src="assets/nano_step_1.png" alt="Step 1: Upload">
+                <div class="step-content">
+                    <h3 data-i18n="step.1.title">1. 素材生成 (Upload)</h3>
+                    <p data-i18n="step.1.desc">開啟「素材生成工廠」，上傳您的圖片。調整去背容許度，讓 Nano Banana 幫您自動去背並提取物件！</p>
+                </div>
+            </div>
+            <!-- Step 2 -->
+            <div class="step-card">
+                <img src="assets/nano_step_2.png" alt="Step 2: Assemble">
+                <div class="step-content">
+                    <h3 data-i18n="step.2.title">2. 角色組裝 (Equip)</h3>
+                    <p data-i18n="step.2.desc">在左側庫存點選角色與配飾。點擊配件即可裝備，享受自由搭配的樂趣！</p>
+                </div>
+            </div>
+            <!-- Step 3 -->
+            <div class="step-card">
+                <img src="assets/nano_step_3.png" alt="Step 3: Edit">
+                <div class="step-content">
+                    <h3 data-i18n="step.3.title">3. 細節調整 (Edit)</h3>
+                    <p data-i18n="step.3.desc">使用下方編輯器微調位置、旋轉與動畫跳動幅度。完成後點擊下載，將您的作品帶回家！</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AdSense: Footer/Tutorial Ad -->
+    <section style="max-width: 1000px; margin: 20px auto; text-align: center;">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6469324787465789"
+            data-ad-slot="8594075739" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </section>
+
+    <!-- Factory Modal (Generation & Processing) -->
+    <div class="modal-overlay" id="factory-modal">
+        <div class="modal-content">
+            <div class="panel-header">
+                <span data-i18n="factory.title">素材生成工廠</span>
+                <button class="btn-secondary" id="btn-close-factory" style="background:none; border:none; padding:4px;">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <!-- Factory Tabs -->
+                <div class="library-tabs">
+                    <button class="tab-btn active" id="factory-tab-char" onclick="setFactoryTab('character')"
+                        data-i18n="factory.tab.char">角色生成</button>
+                    <button class="tab-btn" id="factory-tab-acc" onclick="setFactoryTab('accessory')"
+                        data-i18n="factory.tab.acc">配飾生成</button>
+                </div>
+
+                <!-- Input Section -->
+                <div class="control-group">
+                    <label class="control-label" data-i18n="factory.source">來源</label>
+                    <div class="flex gap-2">
+                        <!-- Direct Upload -->
+                        <div class="flex-1">
+                            <input type="file" id="inp-upload-img" accept="image/*">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preview & Settings -->
+                <div class="row gap-2" style="height: 300px;">
+                    <!-- Raw / Processed Preview -->
+                    <div class="flex-1 preview-box" id="factory-preview-box">
+                        <span class="text-muted text-sm" data-i18n="factory.preview.placeholder">請上傳圖片</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label"><span data-i18n="factory.tolerance">去背容許度 (Tolerance):</span> <span
+                            id="val-tolerance">30</span></label>
+                    <input type="range" id="inp-tolerance" min="0" max="100" value="30">
+
+                    <div class="bg-detect">
+                        <div class="bg-detect-main">
+                            <div class="bg-detect-row">
+                                <div class="bg-detect-status">
+                                    <span class="text-xs text-muted" data-i18n="factory.bg.status">背景色</span>
+                                    <span id="bg-color-mode" class="badge" data-i18n="factory.bg.auto">自動</span>
+                                </div>
+                            </div>
+                            <div class="bg-detect-actions">
+                                <button class="btn btn-secondary btn-xs" id="btn-bg-pick" type="button"
+                                    data-i18n="factory.bg.pick_btn">手動吸取背景色</button>
+                                <button class="btn btn-xs" id="btn-bg-reset" type="button"
+                                    data-i18n="factory.bg.reset_btn">回到自動</button>
+                            </div>
+                            <div id="bg-detect-hint" class="text-xs text-muted" data-i18n="factory.bg.hint.auto">
+                                自動：取四角多數顏色。手動：按「吸取背景色」後點圖（5×5 平均）。</div>
+                        </div>
+                        <div id="bg-color-swatch" class="bg-swatch-card" style="background:#ffffff;">
+                            <span id="bg-color-hex" class="bg-swatch-card-hex">#ffffff</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group hidden" id="group-frame-count">
+                    <label class="control-label"><span data-i18n="factory.frames">目標格數 (Frames):</span> <span
+                            id="val-frames">4</span></label>
+                    <input type="range" id="inp-frames" min="1" max="8" value="4">
+                </div>
+
+                <div class="control-group" id="group-frame-select">
+                    <label class="control-label" data-i18n="factory.select_method">格擷取方式</label>
+                    <div class="text-xs text-muted" style="margin-bottom:4px;" data-i18n="factory.select_desc">
+                        依像素數量：較能過濾雜點；原圖順序：保留排列但可能保留雜點；自定義排列：拖拉排序
+                        / 刪除格子。</div>
+                    <div class="flex gap-2" style="flex-wrap: wrap;">
+                        <label class="flex items-center gap-2 text-xs">
+                            <input type="radio" name="frame-select" id="frame-select-size" checked>
+                            <span data-i18n="factory.method.size">依像素數量（去雜質）</span>
+                        </label>
+                        <label class="flex items-center gap-2 text-xs">
+                            <input type="radio" name="frame-select" id="frame-select-order">
+                            <span data-i18n="factory.method.order">原圖順序（左至右，上至下）</span>
+                        </label>
+                        <label class="flex items-center gap-2 text-xs">
+                            <input type="radio" name="frame-select" id="frame-select-custom">
+                            <span data-i18n="factory.method.custom">自定義排列</span>
+                        </label>
+                    </div>
+                    <div id="custom-order-wrapper" class="hidden">
+                        <div class="text-xs text-muted" style="margin: 6px 0;" data-i18n="factory.custom_hint">
+                            拖拉格子可重新排序，叉叉可移除。重新上傳或切換模式會重置自定義排列。</div>
+                        <div id="custom-order-list" class="custom-list"></div>
+                    </div>
+                </div>
+
+                <button class="btn" id="btn-add-to-library" disabled>
+                    <i data-lucide="check"></i> <span data-i18n="btn.add_to_library">加入庫存</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">Message here</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.js"></script>
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

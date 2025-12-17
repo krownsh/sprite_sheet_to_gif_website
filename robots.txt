@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://spritesheettogif.krownsh.work/sitemap.xml
