@@ -741,6 +741,7 @@ header .form-select {
     margin-bottom: 16px;
     background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -866,4 +867,104 @@ header .form-select {
         flex-direction: column;
         gap: 30px;
     }
+}
+
+/* Utilities */
+.mb-2 {
+    margin-bottom: 8px;
+}
+
+.mb-4 {
+    margin-bottom: 16px;
+}
+
+.mb-6 {
+    margin-bottom: 24px;
+}
+
+.mb-8 {
+    margin-bottom: 32px;
+}
+
+.mt-8 {
+    margin-top: 32px;
+}
+
+.mt-12 {
+    margin-top: 48px;
+}
+
+.pb-4 {
+    padding-bottom: 16px;
+}
+
+.pt-6 {
+    padding-top: 24px;
+}
+
+.pl-4 {
+    padding-left: 16px;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.text-white {
+    color: #ffffff;
+}
+
+.text-slate-300 {
+    color: #cbd5e1;
+}
+
+.text-slate-400 {
+    color: #94a3b8;
+}
+
+.text-slate-500 {
+    color: #64748b;
+}
+
+.text-emerald-400 {
+    color: #34d399;
+}
+
+.text-emerald-500 {
+    color: #10b981;
+}
+
+.border-t {
+    border-top: 1px solid var(--border);
+}
+
+.border-b {
+    border-bottom: 1px solid var(--border);
+}
+
+.border-l-2 {
+    border-left: 2px solid;
+}
+
+/* Blog Card Hover Effects */
+.blog-card {
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.2);
+}
+
+.blog-view .info-body {
+    font-size: 1.1rem;
+    line-height: 1.9;
 }
