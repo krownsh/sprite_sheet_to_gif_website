@@ -68,7 +68,58 @@ const Lang = {
             'msg.upload_first': '請先上傳圖片',
             'msg.saved_png': '已下載組合圖片',
             'msg.no_char': '請先選擇角色',
-            'msg.no_obj': '未偵測到物件'
+            'msg.no_obj': '未偵測到物件',
+
+            // New Navbar/Footer
+            'nav.about': '關於我們',
+            'nav.faq': '常見問題',
+            'nav.blog': '教學部落格',
+            'nav.privacy': '隱私政策',
+            'nav.terms': '服務條款',
+            'nav.contact': '聯絡我們',
+            'nav.home': '回首頁',
+
+            // Hero Section
+            'hero.title': '釋放你的創意，客製化專屬像素精靈',
+            'hero.desc': 'Pixel Sprite Studio 是一個強大的線上像素精靈製作工具。輕鬆去背、組裝角色、調整動畫。',
+
+            // About Us
+            'info.about.title': '關於 Pixel Sprite Studio',
+            'info.about.content': 'Pixel Sprite Studio 誕生於對像素藝術的熱愛。我們致力於為獨立遊戲開發者、數位藝術家以及所有熱愛復古美學的人提供最直觀、流暢的像素精靈製作體驗。無論是簡單的角色組裝還是複雜的動畫調整，我們的工具都能幫助您專注於創意，而非繁琐的技術細節。',
+
+            // FAQ
+            'info.faq.title': '常見問題 (FAQ)',
+            'info.faq.q1': '如何匯出我的作品？',
+            'info.faq.a1': '點擊右側面板的「輸出 PNG」或「輸出 GIF」按鈕，系統會自動處理並提示下載。',
+            'info.faq.q2': '我可以商業使用產出的素材嗎？',
+            'info.faq.a2': '如果您是使用自己上傳的素材進行編輯，您擁有完整的版權。內建素材請參考我們的服務條款。',
+            'info.faq.q3': '支持哪些圖片格式？',
+            'info.faq.a3': '目前支持主流的 PNG, JPG 格式上傳，並能輸出帶有透明背景的 PNG 與動畫 GIF。',
+
+            // Privacy Policy
+            'info.privacy.title': '隱私權政策',
+            'info.privacy.content': '我們非常重視您的隱私。本站不會主動搜集您的個人識別資料。所有的圖片處理均在您的瀏覽器本地完成，或透過加密連線傳輸至我們的伺服器進行處理，處理後我們不會保留您的原始圖片檔案。我們使用 Google AdSense 服務來展示廣告，這可能會使用 Cookie 來提供您感興趣的廣告內容。',
+
+            // Terms
+            'info.terms.title': '服務條款',
+            'info.terms.content': '歡迎使用 Pixel Sprite Studio。使用本網站即表示您同意遵守以下條款：您不得利用本工具製作非法、侵權或令人反感的內容。我們不對使用本工具產生的任何間接損害承擔責任。本站保留隨時更新功能與調整條款的權利。',
+
+            // Contact
+            'info.contact.title': '聯絡我們',
+            'info.contact.content': '如果您有任何建議、錯誤回報或商業合作提案，歡迎聯繫我們：\\nEmail: contact@pixel-sprite-studio.com\\n我們通常會在 1-3 個工作天內回覆。',
+
+            // Blog Posts
+            'blog.p1.title': '像素精靈製作入門：從零開始創作者指南',
+            'blog.p1.summary': '了解像素藝術的基本原則，從網格設定到色彩選擇，一步步打造您的第一個像素角色。',
+            'blog.p1.content': '像素藝術（Pixel Art）是一種經久不衰的數位藝術形式，它依賴於單個像素的精確排列來構建圖像。在製作像素精靈時，比例（Scale）與解析度（Resolution）是首要考慮的因素。對於初學者，建議從 16x16 或 32x32 的畫布開始。色彩的選擇同樣關鍵，使用受限的色盤（Limited Color Palette）能讓作品展現出獨特的復古韻味與視覺一致性...',
+
+            'blog.p2.title': '什麼是 Sprite Sheet？遊戲開發者必備基礎知識',
+            'blog.p2.summary': '深入解析 Sprite Sheet 的運作原理，以及如何優化您的遊戲素材資源。',
+            'blog.p2.content': '在遊戲開發中，Sprite Sheet 是一種將多張小圖整合進一張大圖的技術。這不僅能減少檔案載入的次數，還能顯著提升遊戲效能。一個標準的循環動畫通常包含 4 到 8 幀的動作。在本工具中，我們提供了自動偵測與去背功能，讓您能輕鬆地將單張圖片轉換為符合遊戲引擎需求的 Sprite 資源...',
+
+            'blog.p3.title': '優化您的像素動畫：流暢度與細節調整技巧',
+            'blog.p3.summary': '提升動畫質感的秘訣，包括如何利用運動曲線與反彈效果增加角色活力。',
+            'blog.p3.content': '流暢的動畫是像素角色的靈魂。除了基本的幀切換，加入微小的跳動效果（Bobbing）或旋轉（Rotation）能讓靜態的物件「活」起來。在本工具的編輯器中，您可以即時調整這些參數，觀察不同數值對動畫質感的影響。例如，適度的縮放變化能模擬角色呼吸，而精確的旋轉則能表現裝備的靈動感...'
         },
         'en': {
             meta: {
@@ -133,7 +184,58 @@ const Lang = {
             'msg.upload_first': 'Please upload an image first',
             'msg.saved_png': 'Composition saved',
             'msg.no_char': 'Please select a character first',
-            'msg.no_obj': 'No objects detected'
+            'msg.no_obj': 'No objects detected',
+
+            // New Navbar/Footer
+            'nav.about': 'About Us',
+            'nav.faq': 'FAQ',
+            'nav.blog': 'Blog',
+            'nav.privacy': 'Privacy Policy',
+            'nav.terms': 'Terms',
+            'nav.contact': 'Contact',
+            'nav.home': 'Home',
+
+            // Hero Section
+            'hero.title': 'Unleash Your Creativity with Custom Pixel Sprites',
+            'hero.desc': 'Pixel Sprite Studio is a powerful online tool for creating pixel art sprites. Easily remove backgrounds, assemble characters, and adjust animations.',
+
+            // About Us
+            'info.about.title': 'About Pixel Sprite Studio',
+            'info.about.content': 'Pixel Sprite Studio was born from a passion for pixel art. We are committed to providing independent game developers, digital artists, and retro aesthetic enthusiasts with the most intuitive and smooth pixel sprite creation experience. Whether it is simple character assembly or complex animation adjustment, our tools can help you focus on creativity rather than tedious technical details.',
+
+            // FAQ
+            'info.faq.title': 'Frequently Asked Questions (FAQ)',
+            'info.faq.q1': 'How to export my work?',
+            'info.faq.a1': 'Click the "Export PNG" or "Export GIF" buttons on the right panel, and the system will automatically process and prompt for download.',
+            'info.faq.q2': 'Can I use the generated assets commercially?',
+            'info.faq.a2': 'If you use your own uploaded assets for editing, you have full copyright. For built-in assets, please refer to our Terms of Service.',
+            'info.faq.q3': 'Which image formats are supported?',
+            'info.faq.a3': 'Currently supports mainstream PNG and JPG uploads, and can export PNGs with transparent backgrounds and animated GIFs.',
+
+            // Privacy Policy
+            'info.privacy.title': 'Privacy Policy',
+            'info.privacy.content': 'We take your privacy seriously. This site does not actively collect your personally identifiable information. All image processing is done locally in your browser or transmitted to our server via an encrypted connection for processing; we do not keep your original image files after processing. We use Google AdSense to display advertisements, which may use cookies to provide interest-based advertising.',
+
+            // Terms
+            'info.terms.title': 'Terms of Service',
+            'info.terms.content': 'Welcome to Pixel Sprite Studio. By using this website, you agree to comply with the following terms: You may not use this tool to create illegal, infringing, or objectionable content. We are not liable for any indirect damages resulting from the use of this tool. This site reserves the right to update functions and adjust terms at any time.',
+
+            // Contact
+            'info.contact.title': 'Contact Us',
+            'info.contact.content': 'If you have any suggestions, bug reports, or business cooperation proposals, please feel free to contact us:\\nEmail: contact@pixel-sprite-studio.com\\nWe usually respond within 1-3 business days.',
+
+            // Blog Posts
+            'blog.p1.title': 'Pixel Sprite Creation 101: A Creator\'s Guide',
+            'blog.p1.summary': 'Learn the basic principles of pixel art, from grid settings to color selection, and build your first pixel character step by step.',
+            'blog.p1.content': 'Pixel Art is a timeless digital art form that relies on the precise arrangement of individual pixels to build images. When making pixel sprites, Scale and Resolution are the primary factors to consider. For beginners, it is recommended to start with a 16x16 or 32x32 canvas. Color choice is also crucial; using a Limited Color Palette can give your work a unique retro charm and visual consistency...',
+
+            'blog.p2.title': 'What is a Sprite Sheet? Essential Knowledge for Game Developers',
+            'blog.p2.summary': 'In-depth analysis of how Sprite Sheets work and how to optimize your game asset resources.',
+            'blog.p2.content': 'In game development, a Sprite Sheet is a technique that integrates multiple small images into one large image. This not only reduces the number of file loads but also significantly improves game performance. A standard looping animation usually consists of 4 to 8 frames. In this tool, we provide automatic detection and background removal functions, allowing you to easily convert a single image into a Sprite resource that meets the needs of game engines...',
+
+            'blog.p3.title': 'Optimizing Your Pixel Animation: Tips for Smoothness and Detail',
+            'blog.p3.summary': 'Secrets to improving animation texture, including how to use motion curves and bounce effects to add vitality to characters.',
+            'blog.p3.content': 'Smooth animation is the soul of a pixel character. In addition to basic frame switching, adding minor bobbing or rotation effects can make static objects "come alive". In this tool\'s editor, you can adjust these parameters in real-time and observe the impact of different values on the animation quality. For example, moderate scaling changes can simulate character breathing, while precise rotation can express the flexibility of equipment...'
         },
         'ja': {
             meta: {
